@@ -2,7 +2,45 @@ import streamlit as st
 from pymystem3 import Mystem
 import re
 
-# Инициализируем Mystem (один раз при запуске)
+# ============================================================
+# 1. НАСТРОЙКА СТРАНИЦЫ И ФОНОВОЕ ИЗОБРАЖЕНИЕ
+# ============================================================
+st.set_page_config(page_title="Коллежки из деканата", layout="centered")
+
+# ДОБАВЛЯЕМ ФОНОВУЮ КАРТИНКУ (CSS)
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-image: url('фон.jpg');   /* ← здесь укажите имя вашего файла */
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+    /* Полупрозрачный слой для читаемости текста (при необходимости) */
+    .stApp::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.7); /* белый, можно изменить на чёрный с 0.5 */
+        z-index: -1;
+    }
+    /* Контент поверх фона */
+    .stApp > div {
+        position: relative;
+        z-index: 1;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# ============================================================
+# 2. Mystem и вспомогательные функции
+# ============================================================
 @st.cache_resource
 def load_mystem():
     return Mystem()
@@ -15,7 +53,7 @@ def get_lemma(word):
     return ''.join(f for f in lemmatized_forms if f.strip() and f.isalpha()).strip()
 
 # ============================================================
-# СЛОВАРЬ ПРАВИЛ (полный, как в вашем коде)
+# 3. СЛОВАРЬ ПРАВИЛ (ваш полный словарь)
 # ============================================================
 RULES = {
     'ключ': {
@@ -914,7 +952,7 @@ RULES = {
 }
 
 # ============================================================
-# ФУНКЦИЯ ОПРЕДЕЛЕНИЯ ЗНАЧЕНИЯ
+# 4. ФУНКЦИЯ ОПРЕДЕЛЕНИЯ ЗНАЧЕНИЯ
 # ============================================================
 def disambiguate(sentence, word):
     target_lemma = get_lemma(word)
@@ -937,48 +975,11 @@ def disambiguate(sentence, word):
     best_score = scores[best_meaning]
     return best_meaning, best_score
 
-
 # ============================================================
-# ВЕБ-ИНТЕРФЕЙС STREAMLIT – обновлённый заголовок
+# 5. ВЕБ-ИНТЕРФЕЙС (заголовки, поля, кнопка)
 # ============================================================
-st.set_page_config(page_title="Коллежки из деканата", layout="centered")
-# ============================================================
-# ФОНОВОЕ ИЗОБРАЖЕНИЕ (CSS)
-# ============================================================
-st.markdown(
-    """
-    <style>
-    .stApp {
-        background-image: url('фон.jpg');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-    }
-    /* Затемнение для читаемости текста (по желанию) */
-    .stApp::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(255, 255, 255, 0.6); /* белый полупрозрачный слой */
-        z-index: -1;
-    }
-    /* Убедимся, что содержимое поверх фона */
-    .stApp > div {
-        position: relative;
-        z-index: 1;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-# Основной заголовок с лупой
 st.title("🔍 Определение значения многозначных слов")
-# Подпись с указанием авторства
 st.caption("P.S: разработано коллежками из деканата")
-# Инструкция для пользователя
 st.markdown("Введите предложение и выберите слово, которое нужно проанализировать.")
 
 # Выпадающий список со всеми доступными словами
