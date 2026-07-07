@@ -12,7 +12,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background-image: url('https://international.donstu.ru/wp-content/uploads/2022/11/dji_0117-1024x716.jpg');
+        background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgA9aHIaBOSknJELg1aKI2oWQzp-hMpUtbi8xEs1mkp47t6dCFRT7CZmGv&s=10');
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
