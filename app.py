@@ -25,7 +25,7 @@ st.markdown(
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(40, 40, 40, 0.85);   /* теперь очень тёмный */
+        background: rgba(30, 30, 30, 0.85);
         z-index: -1;
     }
     .stApp > div {
@@ -33,73 +33,104 @@ st.markdown(
         z-index: 1;
     }
 
-    /* Общие настройки текста – белый цвет */
+    /* ===== ОСНОВНЫЕ ТЕКСТОВЫЕ БЛОКИ – чёрный фон, белый текст ===== */
     .stApp h1, 
     .stApp .st-caption, 
     .stApp .stMarkdown, 
-    .stApp label, 
-    .stApp .stTextArea textarea,
-    .stApp .stSelectbox div[data-baseweb="select"],
-    .stApp .stButton button,
-    .stApp .stAlert,
-    .stApp .stSuccess,
-    .stApp .stError,
-    .stApp .stWarning,
-    .stApp .stSpinner {
-        color: #ffffff !important;
-    }
-
-    /* Делаем заголовок, подпись, описание и лейблы как карточки с фоном, как у кнопки */
-    .stApp h1,
-    .stApp .st-caption,
-    .stApp .stMarkdown,
     .stApp label {
-        background-color: #555555 !important;
-        padding: 10px 20px !important;
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        padding: 12px 20px !important;
         border-radius: 10px !important;
-        display: inline-block !important;  /* чтобы блок был по ширине содержимого */
-        margin-bottom: 5px !important;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.3) !important;
+        margin-bottom: 8px !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.6) !important;
+        display: inline-block !important;
     }
 
-    /* Описание (инструкция) – сделаем чуть шире, на всю ширину */
+    /* Описание (инструкция) – на всю ширину */
     .stApp .stMarkdown {
         display: block !important;
         width: 100% !important;
         margin-top: 5px !important;
         margin-bottom: 15px !important;
+        background-color: #000000 !important;
+        color: #ffffff !important;
     }
 
-    /* Поля ввода – тёмный фон, светлый текст */
+    /* ===== EXPANDER «Показать детали оценки» – тоже чёрный фон ===== */
+    .stExpander {
+        background-color: #000000 !important;
+        border-radius: 10px !important;
+        border: none !important;
+        margin-top: 10px !important;
+    }
+    .stExpander .stExpanderHeader {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        font-weight: bold !important;
+        border-radius: 10px !important;
+        padding: 10px !important;
+    }
+    .stExpander .stExpanderContent {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        padding: 15px !important;
+        border-radius: 0 0 10px 10px !important;
+    }
+    /* Текст внутри expander тоже белый */
+    .stExpander .stExpanderContent p,
+    .stExpander .stExpanderContent div,
+    .stExpander .stExpanderContent span,
+    .stExpander .stExpanderContent li,
+    .stExpander .stExpanderContent pre {
+        color: #ffffff !important;
+    }
+
+    /* ===== ПОЛЯ ВВОДА И ВЫПАДАЮЩИЕ СПИСКИ – тёмный фон, белый текст ===== */
     .stTextArea textarea,
     .stSelectbox div[data-baseweb="select"] {
-        background-color: #444444 !important;
-        border: 1px solid #666666 !important;
-        color: white !important;
+        background-color: #333333 !important;
+        border: 1px solid #555555 !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
     }
     .stSelectbox div[data-baseweb="select"] {
-        background-color: #444444 !important;
+        background-color: #333333 !important;
     }
 
-    /* Кнопка "Определить значение" – уже была, но продублируем стили */
+    /* ===== КНОПКА «Определить значение» ===== */
     .stButton button {
         background-color: #555555 !important;
         border: none !important;
-        color: white !important;
+        color: #ffffff !important;
         padding: 10px 30px !important;
         border-radius: 10px !important;
         font-weight: bold !important;
         box-shadow: 0 2px 5px rgba(0,0,0,0.3) !important;
+        transition: 0.2s !important;
     }
     .stButton button:hover {
         background-color: #777777 !important;
     }
 
-    /* Сообщения (success, error, warning) – тоже с тёмным фоном */
+    /* ===== СООБЩЕНИЯ (warning, success, error) – чёрный фон ===== */
     .stAlert {
-        background-color: #444444 !important;
+        background-color: #000000 !important;
         border-radius: 10px !important;
-        padding: 10px !important;
+        padding: 15px !important;
+        color: #ffffff !important;
+    }
+    .stAlert .stAlertIcon {
+        color: #ffffff !important;
+    }
+
+    /* ===== ПРОЧИЕ ЭЛЕМЕНТЫ ===== */
+    .stSpinner {
+        color: #ffffff !important;
+    }
+    .stSelectbox label {
+        background-color: #000000 !important;
+        color: #ffffff !important;
     }
     </style>
     """,
@@ -121,7 +152,7 @@ def get_lemma(word):
     return ''.join(f for f in lemmatized_forms if f.strip() and f.isalpha()).strip()
 
 # ============================================================
-# 3. СЛОВАРЬ ПРАВИЛ (полный)
+# 3. СЛОВАРЬ ПРАВИЛ (полный, как в вашем коде)
 # ============================================================
 RULES = {
     'ключ': {
