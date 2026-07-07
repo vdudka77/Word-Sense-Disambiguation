@@ -12,7 +12,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background-image: url('https://upload.wikimedia.org/wikipedia/ru/1/15/%D0%94%D0%93%D0%A2%D0%A3_%D0%BB%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF.png');
+        background-image: url('https://aseykinaonline.ru/wp-content/uploads/2023/08/dgtu.jpg.png');
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
