@@ -942,7 +942,38 @@ def disambiguate(sentence, word):
 # ВЕБ-ИНТЕРФЕЙС STREAMLIT – обновлённый заголовок
 # ============================================================
 st.set_page_config(page_title="Коллежки из деканата", layout="centered")
-
+# ============================================================
+# ФОНОВОЕ ИЗОБРАЖЕНИЕ (CSS)
+# ============================================================
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-image: url('фон.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+    /* Затемнение для читаемости текста (по желанию) */
+    .stApp::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.6); /* белый полупрозрачный слой */
+        z-index: -1;
+    }
+    /* Убедимся, что содержимое поверх фона */
+    .stApp > div {
+        position: relative;
+        z-index: 1;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 # Основной заголовок с лупой
 st.title("🔍 Определение значения многозначных слов")
 # Подпись с указанием авторства
