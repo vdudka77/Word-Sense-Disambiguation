@@ -7,17 +7,17 @@ import re
 # ============================================================
 st.set_page_config(page_title="Коллежки из деканата", layout="centered")
 
-# ДОБАВЛЯЕМ ФОНОВУЮ КАРТИНКУ (CSS)
+# ФОНОВАЯ КАРТИНКА ПО ПРЯМОЙ ССЫЛКЕ
 st.markdown(
     """
     <style>
     .stApp {
-        background-image: url('фон.jpg');   /* ← здесь укажите имя вашего файла */
+        background-image: url('https://international.donstu.ru/wp-content/uploads/2022/11/dji_0117-1024x716.jpg');
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
     }
-    /* Полупрозрачный слой для читаемости текста (при необходимости) */
+    /* Полупрозрачный слой для читаемости текста */
     .stApp::before {
         content: "";
         position: absolute;
@@ -25,7 +25,7 @@ st.markdown(
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(255, 255, 255, 0.7); /* белый, можно изменить на чёрный с 0.5 */
+        background: rgba(255, 255, 255, 0.7);
         z-index: -1;
     }
     /* Контент поверх фона */
@@ -53,7 +53,7 @@ def get_lemma(word):
     return ''.join(f for f in lemmatized_forms if f.strip() and f.isalpha()).strip()
 
 # ============================================================
-# 3. СЛОВАРЬ ПРАВИЛ (ваш полный словарь)
+# 3. СЛОВАРЬ ПРАВИЛ (полный)
 # ============================================================
 RULES = {
     'ключ': {
