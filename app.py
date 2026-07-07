@@ -12,7 +12,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background-image: url('https://aseykinaonline.ru/wp-content/uploads/2023/08/dgtu.jpg.png');
+        background-image: url('https://avatars.mds.yandex.net/get-altay/13929277/2a0000019262e0ab107b002747921c25540b/orig');
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
