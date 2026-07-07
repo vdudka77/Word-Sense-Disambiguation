@@ -7,7 +7,7 @@ import re
 # ============================================================
 st.set_page_config(page_title="Коллежки из деканата", layout="centered")
 
-# ФОНОВАЯ КАРТИНКА И СТИЛИ (тёмный полупрозрачный слой, белый текст)
+# ФОНОВАЯ КАРТИНКА И СТИЛИ
 st.markdown(
     """
     <style>
@@ -17,7 +17,7 @@ st.markdown(
         background-position: center;
         background-attachment: fixed;
     }
-    /* Тёмный полупрозрачный слой для читаемости */
+    /* Тёмный полупрозрачный слой для всей страницы */
     .stApp::before {
         content: "";
         position: absolute;
@@ -25,7 +25,7 @@ st.markdown(
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(60, 60, 60, 0.75);   /* тёмно-серый, почти непрозрачный */
+        background: rgba(40, 40, 40, 0.85);   /* теперь очень тёмный */
         z-index: -1;
     }
     .stApp > div {
@@ -33,7 +33,7 @@ st.markdown(
         z-index: 1;
     }
 
-    /* Все текстовые элементы – белые */
+    /* Общие настройки текста – белый цвет */
     .stApp h1, 
     .stApp .st-caption, 
     .stApp .stMarkdown, 
@@ -49,19 +49,57 @@ st.markdown(
         color: #ffffff !important;
     }
 
-    /* Дополнительно – фон для полей ввода и кнопок (сделаем их тёмными) */
+    /* Делаем заголовок, подпись, описание и лейблы как карточки с фоном, как у кнопки */
+    .stApp h1,
+    .stApp .st-caption,
+    .stApp .stMarkdown,
+    .stApp label {
+        background-color: #555555 !important;
+        padding: 10px 20px !important;
+        border-radius: 10px !important;
+        display: inline-block !important;  /* чтобы блок был по ширине содержимого */
+        margin-bottom: 5px !important;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.3) !important;
+    }
+
+    /* Описание (инструкция) – сделаем чуть шире, на всю ширину */
+    .stApp .stMarkdown {
+        display: block !important;
+        width: 100% !important;
+        margin-top: 5px !important;
+        margin-bottom: 15px !important;
+    }
+
+    /* Поля ввода – тёмный фон, светлый текст */
     .stTextArea textarea,
     .stSelectbox div[data-baseweb="select"] {
         background-color: #444444 !important;
         border: 1px solid #666666 !important;
+        color: white !important;
     }
+    .stSelectbox div[data-baseweb="select"] {
+        background-color: #444444 !important;
+    }
+
+    /* Кнопка "Определить значение" – уже была, но продублируем стили */
     .stButton button {
         background-color: #555555 !important;
         border: none !important;
         color: white !important;
+        padding: 10px 30px !important;
+        border-radius: 10px !important;
+        font-weight: bold !important;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.3) !important;
     }
     .stButton button:hover {
         background-color: #777777 !important;
+    }
+
+    /* Сообщения (success, error, warning) – тоже с тёмным фоном */
+    .stAlert {
+        background-color: #444444 !important;
+        border-radius: 10px !important;
+        padding: 10px !important;
     }
     </style>
     """,
@@ -1006,7 +1044,7 @@ def disambiguate(sentence, word):
     return best_meaning, best_score
 
 # ============================================================
-# 5. ВЕБ-ИНТЕРФЕЙС (заголовки, поля, кнопка)
+# 5. ВЕБ-ИНТЕРФЕЙС
 # ============================================================
 st.title("🔍 Определение значения многозначных слов")
 st.caption("P.S: разработано коллежками из деканата")
