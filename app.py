@@ -7,7 +7,7 @@ import re
 # ============================================================
 st.set_page_config(page_title="Коллежки из деканата", layout="centered")
 
-# ФОНОВАЯ КАРТИНКА И СТИЛИ (включая чёрный текст)
+# ФОНОВАЯ КАРТИНКА И СТИЛИ (тёмный полупрозрачный слой, белый текст)
 st.markdown(
     """
     <style>
@@ -17,7 +17,7 @@ st.markdown(
         background-position: center;
         background-attachment: fixed;
     }
-    /* Полупрозрачный белый слой для читаемости */
+    /* Тёмный полупрозрачный слой для читаемости */
     .stApp::before {
         content: "";
         position: absolute;
@@ -25,22 +25,43 @@ st.markdown(
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(255, 255, 255, 0.7);
+        background: rgba(60, 60, 60, 0.75);   /* тёмно-серый, почти непрозрачный */
         z-index: -1;
     }
     .stApp > div {
         position: relative;
         z-index: 1;
     }
-    /* Принудительно делаем текст чёрным */
+
+    /* Все текстовые элементы – белые */
     .stApp h1, 
     .stApp .st-caption, 
     .stApp .stMarkdown, 
     .stApp label, 
-    .stApp .stButton button,
     .stApp .stTextArea textarea,
-    .stApp .stSelectbox div[data-baseweb="select"] {
-        color: #000000 !important;
+    .stApp .stSelectbox div[data-baseweb="select"],
+    .stApp .stButton button,
+    .stApp .stAlert,
+    .stApp .stSuccess,
+    .stApp .stError,
+    .stApp .stWarning,
+    .stApp .stSpinner {
+        color: #ffffff !important;
+    }
+
+    /* Дополнительно – фон для полей ввода и кнопок (сделаем их тёмными) */
+    .stTextArea textarea,
+    .stSelectbox div[data-baseweb="select"] {
+        background-color: #444444 !important;
+        border: 1px solid #666666 !important;
+    }
+    .stButton button {
+        background-color: #555555 !important;
+        border: none !important;
+        color: white !important;
+    }
+    .stButton button:hover {
+        background-color: #777777 !important;
     }
     </style>
     """,
@@ -62,7 +83,7 @@ def get_lemma(word):
     return ''.join(f for f in lemmatized_forms if f.strip() and f.isalpha()).strip()
 
 # ============================================================
-# 3. СЛОВАРЬ ПРАВИЛ (полный, как в вашем коде)
+# 3. СЛОВАРЬ ПРАВИЛ (полный)
 # ============================================================
 RULES = {
     'ключ': {
